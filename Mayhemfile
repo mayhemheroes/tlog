@@ -1,0 +1,6 @@
+project: rnshah9/tlog
+target: tlog-play
+
+cmds:
+  - cmd: /repo/src/tlog/.libs/tlog-play --reader=file --file-path=/test
+    filepath: /test
