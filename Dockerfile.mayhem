@@ -12,10 +12,10 @@ ENV LD_LIBRARY_PATH=/repo/lib/tlog/.libs
 RUN ldconfig
 
 RUN mkdir -p /deps
-RUN ldd /repo/src/tlog/.libs/tlog-play | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+RUN ldd /repo | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
 
 FROM ubuntu:20.04 as package
 
 COPY --from=builder /deps /deps
-COPY --from=builder /repo/src/tlog/.libs/tlog-play /repo/src/tlog/.libs/tlog-play
+COPY --from=builder /repo /repo
 ENV LD_LIBRARY_PATH=/deps
