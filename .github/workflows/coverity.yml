@@ -1,0 +1,29 @@
+name: Coverity scan
+on:
+  # run once daily at 12:30 UTC due to
+  # https://scan.coverity.com/faq#frequency
+  schedule:
+    - cron:  '30 12 * * *'
+
+jobs:
+  coverity:
+    runs-on: ubuntu-latest
+    steps:   
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+       sudo apt update
+       sudo apt -y install autoconf automake make libtool \
+       pkg-config libjson-c-dev libsystemd-dev libcurl-*-dev \
+       libutempter-dev
+
+    - name: Configure
+      run: autoreconf -if && ./configure
+
+    - name: Execute and submit coverity scan
+      uses: vapier/coverity-scan-action@v1
+      with:
+        email: 'jstephen@redhat.com'
+        token: ${{ secrets.COVERITY_SCAN_TOKEN }}
