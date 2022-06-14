@@ -4,3 +4,5 @@ target: tlog-play
 cmds:
   - cmd: /repo/src/tlog/.libs/tlog-play --reader=file --file-path=/test
     filepath: /test
+    env:
+      DISABLE_SMOKETEST: '1'
