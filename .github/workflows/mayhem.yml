@@ -59,7 +59,8 @@ jobs:
       fail-fast: false
       matrix:
         mayhemfile:
-          - mayhem/Mayhemfile
+          - mayhem/Mayhemfile_tlog_utf8_buf_is_valid
+          - mayhem/Mayhemfile_tlog-play
 
     steps:
       - uses: actions/checkout@v3
