@@ -1,0 +1,6 @@
+project: tlog
+target: tlog-utf8-buf-is-valid
+
+cmds:
+  - cmd: /fuzz_tlog_utf8_buf_is_valid
+    libfuzzer: true
